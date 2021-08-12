@@ -4,7 +4,6 @@ import pathlib
 
 cfg = configparser.ConfigParser()
 cfg.read(str(pathlib.Path(__file__).parent.resolve()) + "/serial.cfg")
-print(cfg)
 port = cfg["config"]["port"]
 baud_rate = cfg["config"]["baud_rate"]
 
@@ -15,11 +14,16 @@ except serial.SerialException as ex:
 
 
 def door(open_door: bool):
-    print(open_door)
-    if open_door:
-        ser.write(b"1")
-    else:
-        ser.write(b"2")
+    pass
+    # print(open_door)
+    # if open_door:
+    #     ser.write(b"1")
+    # else:
+    #     ser.write(b"2")
+
+
+def door_closed() -> bool:
+    return True
 
 
 def home(): ser.write(b"2b")
