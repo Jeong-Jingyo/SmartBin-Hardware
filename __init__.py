@@ -23,31 +23,31 @@ def door(open_door: bool):
 
 
 def door_closed() -> bool:
-    return True
+    return False
 
 
 def home(): ser.write(b"2b")
 
 
-def pet(): ser.write(b"1a")
+def bin1(): ser.write(b"1a")
 
 
-def pet_re(): ser.write(b"1c")
+def bin2(): ser.write(b"1c")
 
 
-def plastic(): ser.write(b"3a")
+def bin3(): ser.write(b"3a")
 
 
-def plastic_(): ser.write(b"3b")
+def bin4(): ser.write(b"3b")
 
 
-def can(): ser.write(b"4a")
+def bin5(): ser.write(b"4a")
 
 
-def glass(): ser.write(b"4c")
+def bin6(): ser.write(b"4c")
 
 
-def vinyl(): ser.write(b"5a")
+def bin7(): ser.write(b"5a")
 
 
-def general(): ser.write(b"5c")
+def bin8(): ser.write(b"5c")
