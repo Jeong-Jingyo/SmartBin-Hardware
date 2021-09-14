@@ -1,8 +1,7 @@
-import sys
-import asyncio
 import serial
 import configparser
 import pathlib
+from threading import Thread
 
 cfg = configparser.ConfigParser()
 cfg.read(str(pathlib.Path(__file__).parent.resolve()) + "/serial.cfg")
@@ -17,11 +16,13 @@ class Serial:
 
     def __init__(self):
         try:
-            self.ser = serial.Serial(port=port)
+            self.ser = serial.Serial(port="COM4")
+            ser_thr = Thread(target=self.get_stat)
+            ser_thr.start()
         except serial.SerialException as ex:
             print(ex)
-
-    async def get_stat(self):
+            
+    def get_stat(self):
         while True:
             stat = self.ser.read()
             try:
@@ -33,11 +34,15 @@ class Serial:
                 elif stat == "w":
                     self.working = True
 
-    def door(self):
-        pass
+    def open_door(self):
+        return True
+        self.ser.write(b"s")
 
     def door_closed(self) -> bool:
-        return False
+        return True
+
+    def get_latest_bin_allocation_ratio(self):
+        return self.latest_bin_allocation_ratio
 
     def home(self):
         self.ser.write(b"2b")
